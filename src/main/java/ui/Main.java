@@ -76,7 +76,6 @@ public class Main {
 
     private static void jdbcStorage() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Example JDBC URL: jdbc:sqlite:data.db");
         System.out.println("Example JDBC URL: jdbc:mysql://localhost:3306/charity");
         System.out.print("Enter your JDBC URL: ");
         String jdbcUrl = sc.nextLine();
