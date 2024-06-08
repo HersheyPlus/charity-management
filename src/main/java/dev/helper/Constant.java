@@ -8,3 +8,4 @@ public class Constant {
     public static final String SPLITTER_VOLUNTEER = "&@";
     public static final String SPLITTER_DONATION = "=@";
 }
+

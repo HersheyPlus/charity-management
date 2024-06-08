@@ -475,6 +475,7 @@ public class Main {
     public static void postLoginUI() {
         Scanner sc = new Scanner(System.in);
         boolean isRunning = true;
+        showInfo();
         while (isRunning) {
             System.out.println("----- Post-Login Menu -----");
             System.out.println("1. List Events");
@@ -755,6 +756,15 @@ public class Main {
 
     public static VolunteerRepository getVolunteerRepository() {
         return volunteerRepository;
+    }
+
+    public static void showInfo() {
+        System.out.println("----- Volunteer Info -----");
+        System.out.println("Logged in as: " + currentVolunteer.getName());
+        System.out.println("Email: " + currentVolunteer.getEmail());
+        System.out.println("Phone: " + currentVolunteer.getPhone());
+        System.out.println("Donations: " + currentVolunteer.getDonationList().size());
+        System.out.println();
     }
 }
 

@@ -76,7 +76,6 @@ public class EventRepository implements EventService, Serializable {
         if (sortBy == null || sortBy.isBlank()) {
             throw new EventException("Sorting events failed: Sort by value is required.");
         } else {
-            //! sort by event name
             if (sortBy.equalsIgnoreCase("name")) {
                 if (option.length > 0 && "desc".equalsIgnoreCase(option[0])) {
                     return events.stream()
@@ -86,19 +85,6 @@ public class EventRepository implements EventService, Serializable {
                             .sorted(Comparator.comparing(Event::getName)).collect(Collectors.toList());
                 }
             }
-            //! sort by event date time
-            else if (sortBy.equalsIgnoreCase("date")) {
-                if (option.length > 0 && "desc".equalsIgnoreCase(option[0])) {
-                    return events.stream()
-                            .sorted(Comparator.comparing(Event::getDateTime).reversed())
-                            .collect(Collectors.toList());
-                } else {
-                    return events.stream()
-                            .sorted(Comparator.comparing(Event::getDateTime))
-                            .collect(Collectors.toList());
-                }
-            }
-            //! sort by event total volunteers
             else if (sortBy.equalsIgnoreCase("volunteer")) {
                 if (option.length > 0 && "desc".equalsIgnoreCase(option[0])) {
                     return events.stream()
@@ -110,7 +96,6 @@ public class EventRepository implements EventService, Serializable {
                             .collect(Collectors.toList());
                 }
             }
-            //! sort by event total donations
             else if (sortBy.equalsIgnoreCase("donation")) {
                 if (option.length > 0 && "desc".equalsIgnoreCase(option[0])) {
                     return events.stream()
