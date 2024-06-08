@@ -1,15 +1,15 @@
-package dev.sit.repositories;
+package dev.repositories;
 
-import dev.sit.entities.Volunteer;
-import dev.sit.services.VolunteerService;
+import dev.entities.Volunteer;
+import dev.services.VolunteerService;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import static dev.sit.helper.Validation.validateCreateVolunteer;
-import static dev.sit.helper.Validation.validateVolunteerValueBeforeSetValue;
+import static dev.helper.Validation.validateCreateVolunteer;
+import static dev.helper.Validation.validateVolunteerValueBeforeSetValue;
 
 public class VolunteerRepository implements VolunteerService, Serializable {
     private final List<Volunteer> volunteers = new ArrayList<>();

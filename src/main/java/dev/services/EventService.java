@@ -1,6 +1,6 @@
-package dev.sit.services;
+package dev.services;
 
-import dev.sit.entities.Event;
+import dev.entities.Event;
 
 import java.util.List;
 

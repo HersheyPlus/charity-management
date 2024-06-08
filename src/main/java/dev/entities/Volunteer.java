@@ -1,14 +1,13 @@
-package dev.sit.entities;
+package dev.entities;
 
-import dev.sit.exceptions.DonationException;
-import dev.sit.helper.Constant;
-import dev.sit.helper.StringHelper;
-import dev.sit.ui.Main;
+import dev.helper.Constant;
+import dev.helper.StringHelper;
+import dev.exceptions.DonationException;
+import dev.ui.Main;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 

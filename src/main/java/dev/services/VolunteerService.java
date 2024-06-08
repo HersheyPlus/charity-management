@@ -1,6 +1,6 @@
-package dev.sit.services;
+package dev.services;
 
-import dev.sit.entities.Volunteer;
+import dev.entities.Volunteer;
 
 import java.util.Collection;
 

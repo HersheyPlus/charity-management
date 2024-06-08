@@ -1,9 +1,10 @@
-package dev.sit.entities;
+package dev.entities;
 
-import dev.sit.exceptions.EventException;
-import dev.sit.helper.Constant;
-import dev.sit.helper.StringHelper;
-import dev.sit.ui.Main;
+import dev.helper.Constant;
+import dev.helper.StringHelper;
+import dev.helper.Validation;
+import dev.exceptions.EventException;
+import dev.ui.Main;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -14,8 +15,6 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static dev.sit.helper.Validation.validateEventValueBeforeSetValue;
 
 public class Event implements Serializable {
     public static final String EVENT_CODE = "EV";
@@ -106,7 +105,7 @@ public class Event implements Serializable {
     }
 
     public void setName(String name) {
-        validateEventValueBeforeSetValue(name, "Setting event name failed.");
+        Validation.validateEventValueBeforeSetValue(name, "Setting event name failed.");
         this.name = name;
     }
 
@@ -115,7 +114,7 @@ public class Event implements Serializable {
     }
 
     public void setDescription(String description) {
-        validateEventValueBeforeSetValue(description, "Setting event description failed.");
+        Validation.validateEventValueBeforeSetValue(description, "Setting event description failed.");
         this.description = description;
     }
 
@@ -124,7 +123,7 @@ public class Event implements Serializable {
     }
 
     public void setLocation(String location) {
-        validateEventValueBeforeSetValue(location, "Setting event location failed.");
+        Validation.validateEventValueBeforeSetValue(location, "Setting event location failed.");
         this.location = location;
     }
 
@@ -133,7 +132,7 @@ public class Event implements Serializable {
     }
 
     public void setDateTime(String dateTime) {
-        validateEventValueBeforeSetValue(dateTime, "Setting event date and time failed.");
+        Validation.validateEventValueBeforeSetValue(dateTime, "Setting event date and time failed.");
 
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
 

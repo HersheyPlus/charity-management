@@ -1,7 +1,7 @@
-import dev.sit.entities.Event;
-import dev.sit.entities.Volunteer;
-import dev.sit.repositories.EventRepository;
-import dev.sit.repositories.VolunteerRepository;
+import dev.entities.Event;
+import dev.entities.Volunteer;
+import dev.repositories.EventRepository;
+import dev.repositories.VolunteerRepository;
 
 public class Test {
     private final static VolunteerRepository volunteerService = new VolunteerRepository();

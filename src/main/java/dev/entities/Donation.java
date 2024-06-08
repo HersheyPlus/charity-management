@@ -1,7 +1,7 @@
-package dev.sit.entities;
+package dev.entities;
 
-import dev.sit.helper.Constant;
-import dev.sit.helper.StringHelper;
+import dev.helper.Constant;
+import dev.helper.StringHelper;
 
 import java.io.Serial;
 import java.io.Serializable;

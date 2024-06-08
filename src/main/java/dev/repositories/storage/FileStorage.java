@@ -1,8 +1,8 @@
-package dev.sit.repositories.storage;
+package dev.repositories.storage;
 
-import dev.sit.entities.Event;
-import dev.sit.entities.Volunteer;
-import dev.sit.ui.Main;
+import dev.entities.Event;
+import dev.entities.Volunteer;
+import dev.ui.Main;
 
 import java.io.*;
 

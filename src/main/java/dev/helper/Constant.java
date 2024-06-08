@@ -1,4 +1,4 @@
-package dev.sit.helper;
+package dev.helper;
 
 import java.time.format.DateTimeFormatter;
 

@@ -1,4 +1,4 @@
-package dev.sit.exceptions;
+package dev.exceptions;
 
 public class DonationException extends RuntimeException {
     public DonationException(String message) {

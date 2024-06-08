@@ -1,4 +1,4 @@
-package dev.sit.repositories.storage;
+package dev.repositories.storage;
 
 public class MemoryStorage implements Storage {
     @Override

@@ -1,14 +1,14 @@
-package dev.sit.ui;
+package dev.ui;
 
-import dev.sit.entities.Event;
-import dev.sit.entities.Volunteer;
-import dev.sit.exceptions.NotFoundException;
-import dev.sit.repositories.EventRepository;
-import dev.sit.repositories.VolunteerRepository;
-import dev.sit.repositories.storage.DatabaseStorage;
-import dev.sit.repositories.storage.FileStorage;
-import dev.sit.repositories.storage.MemoryStorage;
-import dev.sit.repositories.storage.Storage;
+import dev.entities.Event;
+import dev.entities.Volunteer;
+import dev.exceptions.NotFoundException;
+import dev.repositories.EventRepository;
+import dev.repositories.VolunteerRepository;
+import dev.repositories.storage.DatabaseStorage;
+import dev.repositories.storage.FileStorage;
+import dev.repositories.storage.MemoryStorage;
+import dev.repositories.storage.Storage;
 
 import java.io.Console;
 import java.util.Scanner;
@@ -126,24 +126,35 @@ public class Main {
     // Admin Login
     public static void adminLogin() {
         Scanner sc = new Scanner(System.in);
-        // password
         Console console = System.console();
+
+        // Check if console is available
+        if (console == null) {
+            System.err.println("No console available");
+            return;
+        }
+
         System.out.println("Type 'cancel' to go back to the previous menu");
 
         while (true) {
             System.out.println("-- Administrator Login ---");
             boolean ec = true;
             String email;
-            String password;
+            char[] passwordArray;
 
             do {
                 System.out.print("Enter your email: ");
                 email = sc.nextLine();
                 if (email.equalsIgnoreCase("cancel")) return;
-                System.out.print("Enter your password: ");
-                password = sc.nextLine();
+
+                // Use console to read password securely
+                passwordArray = console.readPassword("Enter your password: ");
+                if (passwordArray == null) return;
+                String password = new String(passwordArray);
+
                 if (password.equalsIgnoreCase("cancel")) return;
-                if ("admin@gmail.com".equalsIgnoreCase(email) && "admin".equalsIgnoreCase(password)) {
+
+                if ("admin@gmail.com".equalsIgnoreCase(email) && "admin".equals(password)) {
                     adminUi();
                     ec = false;
                 } else {
@@ -598,6 +609,14 @@ public class Main {
     // Login (USER)
     public static void loginEvent() {
         Scanner sc = new Scanner(System.in);
+        Console console = System.console();
+
+        // Check if console is available
+        if (console == null) {
+            System.err.println("No console available");
+            return;
+        }
+
         while (true) {
             System.out.println("-- Login ---");
             System.out.println("Type 'cancel' to go back to the previous menu");
@@ -612,10 +631,12 @@ public class Main {
                 }
             } while (email.isEmpty());
 
+            char[] passwordArray;
             String password;
             do {
-                System.out.print("Enter your password: ");
-                password = sc.nextLine();
+                passwordArray = console.readPassword("Enter your password: ");
+                if (passwordArray == null) return;
+                password = new String(passwordArray);
                 if (password.equals("cancel")) return;
                 if (password.isEmpty()) {
                     System.out.println("Password cannot be empty.");

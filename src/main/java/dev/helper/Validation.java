@@ -1,8 +1,8 @@
-package dev.sit.helper;
+package dev.helper;
 
-import dev.sit.exceptions.DonationException;
-import dev.sit.exceptions.EventException;
-import dev.sit.exceptions.VolunteerException;
+import dev.exceptions.DonationException;
+import dev.exceptions.EventException;
+import dev.exceptions.VolunteerException;
 
 public class Validation {
     public static void validateCreateDonation(String eventId, double amount) {

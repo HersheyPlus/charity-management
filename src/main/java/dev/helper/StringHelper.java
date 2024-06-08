@@ -1,4 +1,4 @@
-package dev.sit.helper;
+package dev.helper;
 
 public class StringHelper {
     public static String generateId(String prefix) {

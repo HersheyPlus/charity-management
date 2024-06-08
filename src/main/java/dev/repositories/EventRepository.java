@@ -1,8 +1,9 @@
-package dev.sit.repositories;
+package dev.repositories;
 
-import dev.sit.entities.Event;
-import dev.sit.exceptions.EventException;
-import dev.sit.services.EventService;
+import dev.entities.Event;
+import dev.exceptions.EventException;
+import dev.helper.Validation;
+import dev.services.EventService;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -10,16 +11,13 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static dev.sit.helper.Validation.validateCreateEvent;
-import static dev.sit.helper.Validation.validateEventValueBeforeSetValue;
-
 
 public class EventRepository implements EventService, Serializable {
     private final List<Event> events = new ArrayList<>();
 
     @Override
     public Event createEvent(String eventName, String location, String description, String eventDateTime) {
-        validateCreateEvent(eventName, location, description, eventDateTime);
+        Validation.validateCreateEvent(eventName, location, description, eventDateTime);
         Event event = new Event(eventName, location, description, eventDateTime);
         events.add(event);
         return event;
@@ -35,10 +33,10 @@ public class EventRepository implements EventService, Serializable {
 
     @Override
     public Event updateEvent(String eventId, String eventName, String location, String description, String eventDateTime) {
-        validateEventValueBeforeSetValue(eventName, "Setting event name failed.");
-        validateEventValueBeforeSetValue(description, "Setting event description failed.");
-        validateEventValueBeforeSetValue(location, "Setting event location failed.");
-        validateEventValueBeforeSetValue(eventDateTime, "Setting event date time failed.");
+        Validation.validateEventValueBeforeSetValue(eventName, "Setting event name failed.");
+        Validation.validateEventValueBeforeSetValue(description, "Setting event description failed.");
+        Validation.validateEventValueBeforeSetValue(location, "Setting event location failed.");
+        Validation.validateEventValueBeforeSetValue(eventDateTime, "Setting event date time failed.");
         Event event = findEvent(eventId);
         if (event != null) {
             event.setName(eventName);

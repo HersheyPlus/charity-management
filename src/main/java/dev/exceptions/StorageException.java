@@ -1,4 +1,4 @@
-package dev.sit.exceptions;
+package dev.exceptions;
 
 public class StorageException extends RuntimeException {
     public StorageException(String message) {

@@ -1,4 +1,4 @@
-package dev.sit.exceptions;
+package dev.exceptions;
 
 public class NotFoundException extends RuntimeException {
     public NotFoundException(String message) {
