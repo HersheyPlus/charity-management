@@ -76,14 +76,16 @@ public class Main {
 
     private static void jdbcStorage() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Example JDBC URL: jdbc:mysql://localhost:3306/charity");
-        System.out.print("Enter your JDBC URL: ");
-        String jdbcUrl = sc.nextLine();
-        System.out.print("Enter your JDBC user: ");
-        String jdbcUser = sc.nextLine();
-        System.out.print("Enter your JDBC password: ");
-        String jdbcPassword = sc.nextLine();
-        storage = new DatabaseStorage(jdbcUrl, jdbcUser, jdbcPassword);
+       while (true) {
+           System.out.println("Example JDBC URL: jdbc:mysql://localhost:3306/charity");
+           System.out.print("Enter your JDBC URL: ");
+           String jdbcUrl = sc.nextLine();
+           System.out.print("Enter your JDBC user: ");
+           String jdbcUser = sc.nextLine();
+           System.out.print("Enter your JDBC password: ");
+           String jdbcPassword = sc.nextLine();
+           storage = new DatabaseStorage(jdbcUrl, jdbcUser, jdbcPassword);
+       }
     }
 
     public static void mainUi() {
@@ -213,6 +215,7 @@ public class Main {
             System.out.println("-- Manage Events Menu--");
             System.out.println("1. Create Event");
             System.out.println("2. Delete Event");
+            System.out.println("3. Update Event");
             System.out.println("3. previous");
             System.out.print("Enter your choice: ");
 
@@ -225,11 +228,49 @@ public class Main {
                     deleteEvent();
                     break;
                 case 3:
+                    updateEvent();
+                    break;
+                case 4:
                     return;
                 default:
                     System.out.println("*** Invalid choice. Please try again.");
             }
         }
+    }
+
+    public static void updateEvent() {
+        showAllEvents();
+        Scanner sc = new Scanner(System.in);
+        String evID;
+        String newName;
+        String newLocation;
+        String newDescription;
+        String newDate;
+        System.out.println("Type 'cancel' to go back to the previous menu");
+        do {
+            System.out.print("Enter Event ID: ");
+            evID = sc.nextLine();
+            if (evID.equalsIgnoreCase("cancel")) return;
+            if (eventRepository.findEvent(evID) == null) {
+                System.out.println("There is no such event ID in the system. Please try again");
+            }
+            System.out.print("Enter new name: ");
+            newName = sc.nextLine();
+            if(newName.equalsIgnoreCase("cancel")) return;
+            System.out.print("Enter new location: ");
+            newLocation = sc.nextLine();
+            if (newLocation.equalsIgnoreCase("cancel")) return;
+            System.out.print("Enter new description: ");
+            newDescription = sc.nextLine();
+            if (newDescription.equalsIgnoreCase("cancel")) return;
+            System.out.print("Enter new date (dd/MM/yyyy): ");
+            newDate = sc.nextLine();
+            if (newDate.equalsIgnoreCase("cancel")) return;
+            eventRepository.updateEvent(evID, newName, newLocation, newDescription, newDate);
+            System.out.println("Update event id " + evID + " successfully.");
+            System.out.println("New event info: " + eventRepository.findEvent(evID));
+            adminUi();
+        } while (eventRepository.findEvent(evID) == null);
     }
 
     // Manage volunteer menu (ADMIN)
@@ -784,6 +825,7 @@ public class Main {
         System.out.println("Email: " + currentVolunteer.getEmail());
         System.out.println("Phone: " + currentVolunteer.getPhone());
         System.out.println("Donations: " + currentVolunteer.getDonationList().size());
+        System.out.println("Total: " + currentVolunteer.getTotalDonations());
         System.out.println();
     }
 }

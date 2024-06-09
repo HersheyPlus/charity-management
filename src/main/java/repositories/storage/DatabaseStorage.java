@@ -18,8 +18,12 @@ public class DatabaseStorage implements Storage {
         this.jdbc_user = user;
         this.jdbc_password = password;
 
-        createIfNotExists();
-        loadData();
+        try {
+            createIfNotExists();
+            loadData();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
